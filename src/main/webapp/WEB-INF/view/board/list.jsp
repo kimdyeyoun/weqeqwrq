@@ -5,6 +5,7 @@
 <%
     List<BoardVO> list = (List<BoardVO>) request.getAttribute("data");
     UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+    int maxPage = (int) request.getAttribute("maxPage");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -47,5 +48,15 @@
         </tr>
         <% } %>
     </table>
+
+<div class="page">
+    <
+    <% for (int i = 1;i <= maxPage; i++){ %>
+    &nbsp;&nbsp;
+    <span><a href="/board/list?page=<%=i%>"><%=i%></a></span>
+    <% } %>
+    &nbsp;&nbsp;>
+</div>
+
 </body>
 </html>

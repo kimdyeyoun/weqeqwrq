@@ -17,10 +17,14 @@
     <div>제목 ${requestScope.data.title}</div>
     <div>작성자 ${requestScope.data.writerNm}</div>
     <div>내용 ${requestScope.data.ctnt}</div>
-    <div>작성일시 ${requestScope.data.rdt}</div>
-
-    <div>${requestScope.err}</div>
-    <% if (loginUser != null && vo.getWriter() == loginUser.getIuser()){ %>
+    <% if (vo.getRdt().equals(vo.getMdt())){ %>
+    날짜 : ${requestScope.data.rdt}
+    <% }else{ %>
+    날짜 : ${requestScope.data.mdt}(수정됨)
+    <% } %>
+    <div>${requestScope.errdel}</div>
+    <div>check ${requestScope.data.writer}</div>
+    <% if (loginUser != null && vo.getWriter()==loginUser.getIuser()){ %>
         <a href="/board/mod?iboard=<%=vo.getIboard()%>"><input type="button" value="수정"></a>
         <a href="/board/del?iboard=<%=vo.getIboard()%>"><input type="button" value="삭제"></a>
     <% } %>

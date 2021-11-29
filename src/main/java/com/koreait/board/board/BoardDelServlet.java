@@ -16,17 +16,10 @@ import java.io.IOException;
 public class BoardDelServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-        if (loginUser == null){
-            req.setAttribute("err", "로그인 해주세요");
-            req.getRequestDispatcher("/board/detail").forward(req, res);
-            return;
-        }
         BoardVO vo = new BoardVO();
         vo.setIboard(Integer.parseInt(req.getParameter("iboard")));
         BoardVO pa = BoardDAO.selBoard(vo);
-        req.setAttribute("datas", pa);
+        req.setAttribute("data", pa);
         BoardDAO.delBoard(pa);
         res.sendRedirect("/board/list");
     }
